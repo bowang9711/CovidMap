@@ -1,1 +1,1 @@
-# CovidMap-leaflet-GeoDjango-spitallite-
+# CovidMap-leaflet-GeoDjango-spitallite
