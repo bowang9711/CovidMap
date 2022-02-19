@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CovidInfor</title>
+    <style>
+ 
+        #myInput {
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            margin-bottom: 12px;
+          }
+
+
+        #table-wrapper {
+            position:relative;
+          }
+        #table-scroll {
+            height: 950px;;
+            overflow:auto;  
+            margin-top:10px;
+
+          }
+        #table-wrapper table {
+            width:100%;
+            
+          
+          }
+        #table-wrapper table * {
+            /*background:white;*/
+            color:black;
+            font: 14px Arial, Helvetica, sans-serif;
+          }
+        #table-wrapper table thead th .text {
+            position:absolute;   
+            z-index:2;
+            height:100px;
+            width:35%;
+            border:1px solid red;
+          }
+
+        th {
+            background: red;
+            position: sticky;
+            top: 0;
+        }  
+
+        table.CovidNumbers {
+        position: right;
+        background-color: #ffffff;
+        border-collapse: collapse;
+        border-width: 2px;
+        border-color: #070101;
+        border-style: solid;
+        color: #000000;
+        }
+
+        table.CovidNumbers td, table.CovidNumbers th {
+        border-width: 2px;
+        font: 14px Arial, Helvetica, sans-serif;
+        border-color: #070707;
+        border-style: solid;
+        padding: 3px;
+        }
+
+        table.CovidNumbers thead {
+        background-color: #eb4343;
+        font: 14px Arial, Helvetica, sans-serif;
+        }
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div id="table-wrapper">
+        <div id="table-scroll">
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for countries..." title="Type in a country">
+            <table id = "myTable" class = "CovidNumbers" border="1">
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                        <th>Total Cases</th>
+                        <th>Total Deaths</th>
+                        <th>Total Recovered</th>
+                        <th>Active Cases</th>
+                        <th>Total Tests</th>
+                    </tr>
+                </thead>    
+                    {% for item in li %}
+                    <tr>
+                        <td>{{ item.country }}</td>
+                        <td>{{ item.totalcases }}</td>
+                        <td>{{ item.totaldeaths }}</td>
+                        <td>{{ item.totalrecovered }}</td>
+                        <td>{{ item.activecases }}</td>
+                        <td>{{ item.totaltests }}</td>
+
+                    </tr>
+                    {% endfor %}
+            </table>     
+            <script>
+                function myFunction() {
+                  var input, filter, table, tr, td, i, txtValue;
+                  input = document.getElementById("myInput");
+                  filter = input.value.toUpperCase();
+                  table = document.getElementById("myTable");
+                  tr = table.getElementsByTagName("tr");
+                  for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                      txtValue = td.textContent || td.innerText;
+                      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                      } else {
+                        tr[i].style.display = "none";
+                      }
+                    }       
+                  }
+                }
+                </script>   
+        </div>    
+    </div>      
+</body>
+</html>

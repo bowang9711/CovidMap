@@ -1,0 +1,1 @@
+var covid = {"type":"FeatureCollection","features":[{"name": "covid", "seq": 434}]}
